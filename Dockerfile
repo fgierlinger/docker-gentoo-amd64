@@ -3,4 +3,4 @@ FROM gentoo/portage:latest as portage
 
 FROM gentoo/stage3-amd64:latest
 
-COPY --from=portage /var/db/repost/gentoo /var/db/repo/gentoo
+COPY --from=portage /var/db/repos/gentoo /var/db/repo/gentoo
