@@ -5,4 +5,10 @@ FROM gentoo/stage3-amd64:latest
 
 COPY --from=portage /var/db/repos/gentoo /var/db/repos/gentoo
 
-RUN emerge-webrsync -q && emerge --quiet-build=y app-portage/portage-utils app-portage/gentoolkit
+RUN emerge-webrsync -q && emerge --quiet-build=y app-portage/portage-utils \
+    app-portage/gentoolkit net-misc/dhcpcd
+
+# https://github.com/gliderlabs/docker-alpine/issues/437#issuecomment-494200575
+VOLUME [ "/sys/fs/cgroup", "/dev" ]
+
+CMD ["/sbin/init"]
